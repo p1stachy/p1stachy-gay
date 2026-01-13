@@ -11,9 +11,11 @@ export default function Home() {
       <div className="flex-1 flex items-center justify-center px-4 py-8 relative z-10">
         <div className="w-full max-w-2xl space-y-6">
           <div className="flex justify-center items-center gap-3 mb-8">
-            <div className="w-14 h-14 rounded-full border-2 border-white bg-white flex items-center justify-center text-black font-bold text-xl">
-              P
-            </div>
+            <img 
+              src="/pfp/p1stachy.webp" 
+              alt="p1stachy avatar" 
+              className="w-14 h-14 rounded-full border-2 border-white object-cover"
+            />
             <h1 className="text-2xl font-bold text-white">p1stachy</h1>
             <a 
               href="https://github.com/p1stachy" 
