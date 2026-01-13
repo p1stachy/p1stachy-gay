@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+html {
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sketch-border {
+  position: relative;
+}
+
+.sketch-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid #fff;
+  border-radius: 8px;
+  clip-path: polygon(
+    0% 2px, 2px 2px, 2px 0%, calc(100% - 2px) 0%, calc(100% - 2px) 2px, 100% 2px,
+    100% calc(100% - 2px), calc(100% - 2px) calc(100% - 2px), calc(100% - 2px) 100%,
+    2px 100%, 2px calc(100% - 2px), 0% calc(100% - 2px)
+  );
+}
+
+@keyframes sketch-draw {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.sketch-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: sketch-draw 1s ease-out forwards;
+}
