@@ -1,8 +1,15 @@
 export const links = [
   {
-    title: "Discord",
-    url: "https://discord.gg/glaceon",
+    title: "Re-Thing",
+    url: "#",
+    image: "/game/rething.webp",
+    description: "My game project",
     rotation: -1
+  },
+  {
+    title: "Discord",
+    url: "https://discord.com/channels/@me/289088457228156930",
+    rotation: 0
   },
   {
     title: "Telegram",

@@ -7,9 +7,11 @@ interface LinkCardProps {
   title: string
   url: string
   rotation?: number
+  image?: string
+  description?: string
 }
 
-export default function LinkCard({ title, url, rotation = 0 }: LinkCardProps) {
+export default function LinkCard({ title, url, rotation = 0, image, description }: LinkCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -33,8 +35,20 @@ export default function LinkCard({ title, url, rotation = 0 }: LinkCardProps) {
           boxShadow: '3px 3px 0px rgba(255, 255, 255, 0.3)',
         }}
       >
+        {image && (
+          <div className="mb-3 flex justify-center">
+            <img 
+              src={image} 
+              alt={title}
+              className="w-16 h-16 object-cover rounded"
+            />
+          </div>
+        )}
         <div className="flex items-center justify-between select-none">
-          <span className="font-bold text-lg select-none">{title}</span>
+          <div className="flex flex-col">
+            <span className="font-bold text-lg select-none">{title}</span>
+            {description && <span className="text-sm text-gray-600 select-none">{description}</span>}
+          </div>
           <ArrowUpRight 
             className={`w-5 h-5 transition-transform duration-200 ${isHovered ? 'rotate-45' : ''}`} 
           />

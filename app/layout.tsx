@@ -1,9 +1,9 @@
 import type { Metadata } from "next"
-import { Space_Mono } from "next/font/google"
+import { Inter } from "next/font/google"
 import "./globals.css"
 
-const spaceMono = Space_Mono({ 
-  weight: ["400", "700"],
+const inter = Inter({ 
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"] 
 })
 
@@ -27,7 +27,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={spaceMono.className} suppressHydrationWarning>{children}</body>
+      <body className={inter.className} suppressHydrationWarning>{children}</body>
     </html>
   )
 }
