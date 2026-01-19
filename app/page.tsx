@@ -46,25 +46,6 @@ export default function Home() {
           </a>
         </div>
 
-        {/* Partner Section */}
-        <div className="flex items-center gap-3 px-6 py-3 bg-[#1e1e1e] rounded-full">
-          <span className="text-gray-400 text-sm">in relationship with</span>
-          <a 
-            href="https://discordapp.com/users/1227176591113715723"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-          >
-            <img 
-              src="/pfp/zepapt.webp" 
-              alt="zepapt_" 
-              className="w-8 h-8 rounded-full object-cover select-none pointer-events-none"
-              draggable={false}
-            />
-            <span className="text-white font-medium">zepapt_</span>
-          </a>
-        </div>
-
         {/* Projects Section */}
         <div className="mt-12 w-full">
           <h2 className="text-xl font-semibold text-white text-center mb-6">Projects</h2>
@@ -111,7 +92,7 @@ export default function Home() {
                   </a>
                   <span className="text-gray-500 text-sm">Programming Assistant</span>
                 </div>
-                <div className="flex items-center justify-between py-2">
+                <div className="flex items-center justify-between py-2 border-b border-gray-800">
                   <a 
                     href="https://discordapp.com/users/1147134799853654087"
                     target="_blank"
@@ -121,6 +102,17 @@ export default function Home() {
                     romchikzabiv
                   </a>
                   <span className="text-gray-500 text-sm">Sprite Artist</span>
+                </div>
+                <div className="flex items-center justify-between py-2">
+                  <a 
+                    href="https://discordapp.com/users/807545334007857194"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    GribMushroom
+                  </a>
+                  <span className="text-gray-500 text-sm">Musician</span>
                 </div>
               </div>
             )}
