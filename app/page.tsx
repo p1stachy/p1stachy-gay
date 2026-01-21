@@ -1,9 +1,36 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false)
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+  const [isBirthday, setIsBirthday] = useState(false)
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const birthday = new Date('2026-02-09T00:00:00')
+      const now = new Date()
+      const difference = birthday.getTime() - now.getTime()
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24)
+        const minutes = Math.floor((difference / 1000 / 60) % 60)
+        const seconds = Math.floor((difference / 1000) % 60)
+
+        setTimeLeft({ days, hours, minutes, seconds })
+        setIsBirthday(false)
+      } else {
+        setIsBirthday(true)
+      }
+    }
+
+    calculateTimeLeft()
+    const timer = setInterval(calculateTimeLeft, 1000)
+
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <main className="min-h-screen bg-[#121212] flex flex-col items-center justify-center px-4 py-8">
@@ -19,6 +46,40 @@ export default function Home() {
         
         {/* Name */}
         <h1 className="text-3xl font-bold text-white">p1stachy</h1>
+        
+        {/* Birthday Countdown */}
+        <div className="bg-[#1e1e1e] px-8 py-4 rounded-lg">
+          {!isBirthday ? (
+            <div className="text-center">
+              <p className="text-gray-400 text-sm mb-3">I'll be 19 in:</p>
+              <div className="flex gap-4 justify-center">
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold text-white">{timeLeft.days}</span>
+                  <span className="text-xs text-gray-500">days</span>
+                </div>
+                <span className="text-3xl font-bold text-white">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold text-white">{String(timeLeft.hours).padStart(2, '0')}</span>
+                  <span className="text-xs text-gray-500">hours</span>
+                </div>
+                <span className="text-3xl font-bold text-white">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold text-white">{String(timeLeft.minutes).padStart(2, '0')}</span>
+                  <span className="text-xs text-gray-500">minutes</span>
+                </div>
+                <span className="text-3xl font-bold text-white">:</span>
+                <div className="flex flex-col items-center">
+                  <span className="text-3xl font-bold text-white">{String(timeLeft.seconds).padStart(2, '0')}</span>
+                  <span className="text-xs text-gray-500">seconds</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="text-center">
+              <p className="text-2xl font-bold text-white">Happy Birthday Me!</p>
+            </div>
+          )}
+        </div>
         
         {/* Social Links */}
         <div className="flex items-center gap-6">
