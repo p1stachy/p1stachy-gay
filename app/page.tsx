@@ -50,6 +50,7 @@ export default function Home() {
 
     const ctx = canvas.getContext('2d')
     if (!ctx) return
+    const safeCtx = ctx
 
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
@@ -64,7 +65,7 @@ export default function Home() {
     let animationFrameId: number
 
     function drawNoise() {
-      const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+      const imageData = safeCtx.getImageData(0, 0, canvas.width, canvas.height)
       const data = imageData.data
       for (let i = 0; i < data.length; i += 4) {
         const color = Math.random() * 255
@@ -73,7 +74,7 @@ export default function Home() {
         data[i + 2] = color
         data[i + 3] = 255
       }
-      ctx.putImageData(imageData, 0, 0)
+      safeCtx.putImageData(imageData, 0, 0)
       animationFrameId = requestAnimationFrame(drawNoise)
     }
 
