@@ -13,7 +13,7 @@ export const links = [
   },
   {
     title: "Telegram",
-    url: "https://t.me/p1stachyx",
+    url: "https://t.me/p1stachy",
     rotation: 1
   }
 ]

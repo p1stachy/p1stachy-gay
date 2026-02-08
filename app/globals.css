@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-primary: #0c0e10;
+  --text-primary: #fff;
+  --border-primary: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -23,10 +29,26 @@ html::-webkit-scrollbar {
 }
 
 body {
-  background: #121212;
-  color: #fff;
+  background: var(--bg-primary);
+  color: var(--text-primary);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* iOS Safe Area Support */
+@supports (padding-bottom: env(safe-area-inset-bottom)) {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Glassmorphism effect */
+@supports (backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px)) {
+  .backdrop-blur-2xl {
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
 }
 
 .sketch-border {
@@ -37,7 +59,7 @@ body {
   content: '';
   position: absolute;
   inset: -2px;
-  border: 2px solid #fff;
+  border: 2px solid var(--border-primary);
   border-radius: 8px;
   clip-path: polygon(
     0% 2px, 2px 2px, 2px 0%, calc(100% - 2px) 0%, calc(100% - 2px) 2px, 100% 2px,
