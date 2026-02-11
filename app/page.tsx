@@ -8,6 +8,7 @@ export default function Home() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   const [isBirthday, setIsBirthday] = useState(false)
   const [activeTab, setActiveTab] = useState<Tab>('home')
+  const [isGoalsOpen, setIsGoalsOpen] = useState(false)
 
   // Birthday countdown
   useEffect(() => {
@@ -89,6 +90,70 @@ export default function Home() {
   return (
     <>
       <canvas id="noise" className="fixed inset-0 w-full h-full pointer-events-none opacity-[0.03] z-50" />
+      <button
+        type="button"
+        onClick={() => setIsGoalsOpen((prev) => !prev)}
+        className="fixed top-4 right-4 z-50 bg-[#0c0e10]/80 hover:bg-[#0c0e10]/95 border border-white/30 text-white text-xs tracking-widest uppercase px-4 py-2 rounded-full backdrop-blur-xl transition-all shadow-[0_8px_30px_rgba(0,0,0,0.45)]"
+        aria-expanded={isGoalsOpen}
+        aria-controls="goals-sheet"
+      >
+        Goals
+      </button>
+
+      <div
+        className={`goals-overlay fixed inset-0 z-30 transition-opacity duration-300 ${isGoalsOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}
+        onClick={() => setIsGoalsOpen(false)}
+        aria-hidden="true"
+      />
+
+      <section
+        id="goals-sheet"
+        className={`fixed z-40 w-full md:w-80 md:right-6 md:top-24 md:left-auto top-0 left-0 right-0 transition-transform duration-500 ${isGoalsOpen ? 'translate-y-0 md:translate-x-0' : '-translate-y-full md:translate-y-0 md:translate-x-full'}`}
+      >
+        <div className={`goals-sheet mx-auto md:mx-0 bg-[#f6f4f0] text-[#0c0e10] border border-black/10 rounded-b-2xl md:rounded-2xl shadow-2xl px-6 py-6 ${isGoalsOpen ? 'goals-sheet--open' : 'goals-sheet--closed'}`}>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm tracking-[0.2em] uppercase font-semibold">Goals by 19</h2>
+            <button
+              type="button"
+              onClick={() => setIsGoalsOpen(false)}
+              className="text-[11px] uppercase tracking-widest text-black/60 hover:text-black transition-colors"
+            >
+              Close
+            </button>
+          </div>
+
+          <ol className="space-y-3 text-[13px] leading-relaxed">
+            <li className="goal-item">
+              <span className="goal-num">1.</span>
+              <span>Release my game Re-Thing</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">2.</span>
+              <span>Buy a MacBook</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">3.</span>
+              <span>Lose 10 or 20 kilograms</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">4.</span>
+              <span>Lose my virginity</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">5.</span>
+              <span className="goal-special">Start OnlyFans and make paid + free content</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">6.</span>
+              <span>Achieve stability in life</span>
+            </li>
+            <li className="goal-item">
+              <span className="goal-num">7.</span>
+              <span>Not die</span>
+            </li>
+          </ol>
+        </div>
+      </section>
       <main className="min-h-screen flex flex-col items-center justify-center px-6 py-12 pb-32 relative">
       <div className="w-full max-w-4xl">
         
